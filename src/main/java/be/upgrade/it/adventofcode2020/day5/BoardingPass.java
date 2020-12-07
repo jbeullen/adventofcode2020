@@ -2,7 +2,9 @@ package be.upgrade.it.adventofcode2020.day5;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class BoardingPass {
     private final String row;
@@ -36,5 +38,23 @@ public class BoardingPass {
                 .findFirst();
 
         return optional.orElse(0L);
+    }
+
+    public final static long findMySeatId(String[] input){
+        List<Long> seatIdsSorted = Arrays.stream(input)
+                .map(s -> new BoardingPass(s).getSeatId())
+                .sorted()
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < seatIdsSorted.size() - 1; i++) {
+            long l1 = seatIdsSorted.get(i);
+            long l2 = seatIdsSorted.get(i+1);
+
+            if(l2-l1 != 1){
+                return l1+1;
+            }
+
+        }
+        return -1L;
     }
 }

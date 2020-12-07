@@ -49,4 +49,12 @@ class BoardingPassTest {
         assertEquals(959, BoardingPass.getHighestSeatId(input));
     }
 
+
+    @Test
+    public void findMySeatId_given_actualInput(){
+        String[] input = Utils.resourceToStringList("day5/input.txt");
+
+        assertEquals(527, BoardingPass.findMySeatId(input));
+    }
+
 }
